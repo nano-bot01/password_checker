@@ -5,6 +5,10 @@
   box-sizing: border-box;
   font-family: "Poppins", cursive;
 }
+[class|="bottom"] {
+  position: absolute; /* this is for setting the footer to the bottem of the page */
+  bottom: 20px;
+}
 body {
   height: 100vh;
   display: flex;
@@ -20,9 +24,10 @@ body {
   border-radius: 10px;
   padding: 30px;
   margin: 0 20px;
-  box-shadow: 17px 17px 10px rgba(243, 24, 24, 0.2);
+  box-shadow: 17px 17px 10px rgba(243, 24, 24, 0.2); /* shadow of the container */
 }
 .container .input-box {
+  /* input box is at relative postion of whole container */
   position: relative;
 }
 .input-box .show_hide {
@@ -42,11 +47,10 @@ body {
   font-size: 18px;
   font-weight: 500;
   color: rgb(0, 0, 0);
-  outline: none;
   padding: 0 50px 0 16px;
 }
 .container .indicator {
-  display: none;
+  display: none; /* if nothing is in text box nothing will be shown up*/
 }
 .container .indicator.active {
   display: block;
@@ -62,5 +66,5 @@ body {
 .icon-text .text {
   font-size: 16px;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 0.8 px;
 }
