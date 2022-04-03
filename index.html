@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Strength Check</title>
+    <link rel="icon" type="image/x-icon" href="fav.png" />
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -19,7 +20,7 @@
     <div class="container">
       <div class="input-box">
         <i class="fas fa-eye-slash show_hide"> </i>
-        <input type="password" placeholder="Enter password to test" />
+        <input type="password" placeholder="Enter your password " />
       </div>
       <div class="indicator">
         <div class="icon-text">
@@ -54,35 +55,48 @@
 
       let alpha = /[a-zA-Z]/,
         num = /[0-9]/,
-        schar = /[!,@,#,$,%,^,&,*,(,),-,+,+,.,|,[,],{,},_,~]/;
+        except = /[<,>,`]/;
+      schar = /[!,@,#,$,%,^,&,*,(,),-,+,+,.,|,[,],{,},_,~]/;
+
       // variable initialization for comparing
       input.addEventListener("keyup", () => {
         indicator.classList.add("active");
 
         let v = input.value; // value is assgined to v
+        if (v.match(except)) {
+          // for invalid characters like ( <, >, space, `)
+          text.textContent = "Invalid Password";
+          input.style.borderColor = "#42b3f5";
+          showHide.style.color = "#42b3f5";
+          iconText.style.color = "#42b3f5";
+        }
         if (v.match(alpha) || v.match(num) || v.match(schar)) {
           text.textContent = "Password is weak";
           input.style.borderColor = "#FF6333";
           showHide.style.color = "#FF6333";
           iconText.style.color = "#FF6333";
         }
-        if (v.match(alpha) && v.match(num) && v.length >= 6) {
+        if (
+          (v.match(alpha) && v.match(num) && v.match(schar)) ||
+          v.length >= 6
+        ) {
           text.textContent = "Password is medium";
           input.style.borderColor = "#cc8500";
           showHide.style.color = "#cc8500";
           iconText.style.color = "#cc8500";
         }
-        if (v.match(alpha) && v.match(num) && v.match(schar) && v.length >= 8) {
+        if (
+          (v.match(alpha) && v.match(num) && v.match(schar)) ||
+          v.length > 9
+        ) {
           text.textContent = "Password is strong";
           input.style.borderColor = "#22C32A";
           showHide.style.color = "#22C32A";
           iconText.style.color = "#22C32A";
         }
         if (
-          v.match(alpha) &&
-          v.match(num) &&
-          v.match(schar) &&
-          v.length >= 17
+          (v.match(alpha) && v.match(num) && v.match(schar)) ||
+          v.length >= 15
         ) {
           text.textContent = "Password is Super Strong ";
           input.style.borderColor = "#000000";
