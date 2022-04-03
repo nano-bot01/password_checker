@@ -57,12 +57,12 @@
         num = /[0-9]/,
         except = /[<,>,`]/;
       schar = /[!,@,#,$,%,^,&,*,(,),-,+,+,.,|,[,],{,},_,~]/;
+
       // variable initialization for comparing
       input.addEventListener("keyup", () => {
         indicator.classList.add("active");
 
         let v = input.value; // value is assgined to v
-
         if (v.match(except)) {
           // for invalid characters like ( <, >, space, `)
           text.textContent = "Invalid Password";
